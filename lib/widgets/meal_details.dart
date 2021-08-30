@@ -3,6 +3,10 @@ import 'package:flutter_complete_guide/dummy_data.dart';
 
 class MealDetailsPage extends StatelessWidget {
   static const String routeName = '/meal-details';
+  Function isFavorited;
+  Function toggleFavorite;
+
+  MealDetailsPage(this.isFavorited, this.toggleFavorite);
 
   Widget buildSectionTitle(BuildContext context, String title) {
     return Container(
@@ -93,6 +97,10 @@ class MealDetailsPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: isFavorited(id) ? Icon(Icons.star) : Icon(Icons.star_border),
+        onPressed: () => toggleFavorite(id),
       ),
     );
   }
